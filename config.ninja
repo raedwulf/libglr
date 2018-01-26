@@ -1,6 +1,4 @@
-version   = 0.0.0
-prefix    = /usr/local
-manprefix = $prefix/share/man
+version  = 0.0.0
 
 cc       = gcc
 ld       = $cc
