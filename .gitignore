@@ -1,0 +1,6 @@
+*.[oadkv]
+*.kv
+.ninja_*
+glrmatch.c
+glrformat.c
+glrtype.c
