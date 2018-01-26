@@ -1,0 +1,11 @@
+version   = 0.0.0
+prefix    = /usr/local
+manprefix = $prefix/share/man
+
+cc       = gcc
+ld       = $cc
+ar       = ar
+
+cppflags = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_GNU_SOURCE -D_XOPEN_SOURCE=700
+cflags   = -std=c99 -Wall -O0 -g
+ldflags  = -lrt -lm -g

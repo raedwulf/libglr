@@ -1,0 +1,48 @@
+include config.ninja
+
+rule cc
+  command = $cc -MMD -MF $out.d $cppflags $cflags -c $in -o $out
+  depfile = $out.d
+  deps = $cc
+  description = CC $out
+
+rule ar
+  command = $ar rcs $out $in
+  description = AR $out
+
+rule mkmatcher
+  command = awk -f mkmatcher.awk -v fn=glrmatch -v headers="<GL/gl.h>;<GL/glext.h>" -v null=0 < $in > $out
+  description = MKMATCHER $out
+
+rule mkswitchformat
+  command = awk -f mkswitch.awk -v fn=glrformat -v headers="<GL/gl.h>;<GL/glext.h>" -v fin=1 -v fout=2 < $in > $out
+  description = MKSWITCH $out
+
+rule mkswitchtype
+  command = awk -f mkswitch.awk -v fn=glrtype -v headers="<GL/gl.h>;<GL/glext.h>" -v fin=1 -v fout=3 < $in > $out
+  description = MKSWITCH $out
+
+rule awkcol1lower
+  command = awk '{print tolower(substr($$1,4))}' $in > $out
+  description = MKSWITCH $out
+
+rule awkcol1
+  command = awk '{print $$1}' $in > $out
+  description = MKSWITCH $out
+
+rule paste
+  command = paste -d ';' $in > $out
+
+build glr.k: awkcol1lower glr.data
+build glr.v: awkcol1 glr.data
+build glr.kv: paste glr.k glr.v 
+build glrmatch.c: mkmatcher glr.kv
+build glrformat.c: mkswitchformat glr.data
+build glrtype.c: mkswitchtype glr.data
+build glr.o: cc glr.c
+build glrmatch.o: cc glrmatch.c
+build glrtype.o: cc glrtype.c
+build glrformat.o: cc glrformat.c
+build libglr.a: ar glr.o glrmatch.o glrtype.o glrformat.o
+
+default libglr.a
