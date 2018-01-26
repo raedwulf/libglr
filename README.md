@@ -46,7 +46,7 @@ will be updated when it is so.
 Headers in build path are required:
 
 - `#include <GL/gl.h>`
-- `#include <GL/glew.h>`
+- `#include <GL/glext.h>`
 
 Build tools:
 
