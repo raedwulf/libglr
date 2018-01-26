@@ -32,9 +32,9 @@ if (xdim < 0 || ydim < 0) {
  */
 
 /* the format of the pixel data and the data type can be determined then */
-format = glformat(internal);
+format = glrformat(internal);
 assert(format > 0);
-type = glformat(type);
+type = glrtype(type);
 assert(type > 0);
 ```
 
