@@ -3,6 +3,7 @@ version  = 0.0.0
 cc       = gcc
 ld       = $cc
 ar       = ar
+awk      = awk
 
 cppflags = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_GNU_SOURCE -D_XOPEN_SOURCE=700
 cflags   = -std=c99 -Wall -O0 -g

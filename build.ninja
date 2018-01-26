@@ -11,23 +11,23 @@ rule ar
   description = AR $out
 
 rule mkmatcher
-  command = awk -f mkmatcher.awk -v fn=glrmatch -v headers="<GL/gl.h>;<GL/glext.h>" -v null=0 < $in > $out
+  command = $awk -f mkmatcher.awk -v fn=glrmatch -v headers="<GL/gl.h>;<GL/glext.h>" -v null=0 < $in > $out
   description = MKMATCHER $out
 
 rule mkswitchformat
-  command = awk -f mkswitch.awk -v fn=glrformat -v headers="<GL/gl.h>;<GL/glext.h>" -v fin=1 -v fout=2 < $in > $out
+  command = $awk -f mkswitch.awk -v fn=glrformat -v headers="<GL/gl.h>;<GL/glext.h>" -v fin=1 -v fout=2 < $in > $out
   description = MKSWITCH $out
 
 rule mkswitchtype
-  command = awk -f mkswitch.awk -v fn=glrtype -v headers="<GL/gl.h>;<GL/glext.h>" -v fin=1 -v fout=3 < $in > $out
+  command = $awk -f mkswitch.awk -v fn=glrtype -v headers="<GL/gl.h>;<GL/glext.h>" -v fin=1 -v fout=3 < $in > $out
   description = MKSWITCH $out
 
 rule awkcol1lower
-  command = awk '{print tolower(substr($$1,4))}' $in > $out
+  command = $awk '{print tolower(substr($$1,4))}' $in > $out
   description = MKSWITCH $out
 
 rule awkcol1
-  command = awk '{print $$1}' $in > $out
+  command = $awk '{print $$1}' $in > $out
   description = MKSWITCH $out
 
 rule paste

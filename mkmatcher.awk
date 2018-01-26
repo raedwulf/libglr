@@ -260,9 +260,7 @@ BEGIN {
 		print
 		print "/* headers included using headers= parameter */"
 	}
-	for (h in ha) {
-		print "#include " ha[h]
-	}
+	for (h = 1; h <= hs; h++) print "#include " ha[h]
 	print
 	print "int"
 	print fn "(const char *s, size_t l)"
